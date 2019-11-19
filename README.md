@@ -2,10 +2,17 @@
 This project was part of a VanHackathon 2019's challenge where one must fill the fields of a given PDF file and return it to the user.
 I chose to implement it as a REST API so it could be easily integrated into whatever system that holds the actual data. The main idea here is to send a JSON with the data that needs to be filled in the file and receive back a filled PDF.
 
+![image](Images/PDFResult.png)
+
 ## Tech stack
 This project was made using a .NET Core 3.0 Web API dockerized with a PostgreSQL database.
 The Database was only needed in order to not hard-code the PDF field names, so if any of them change, the only need is to send a `PUT` request with the new name. The same goes for a new PDF field, just use the API's `POST`. 
 API's documentation was done with Swashbuckle's Swagger and can be reached by the webserver initial page (e.g. `http://localhost:8080`).
+<details>
+
+![image](Images/Swagger1.png)
+
+</details>
 
 For last, PDF reading and editing was done using [iText 7](https://www.nuget.org/packages/itext7/). This 3rd party tool was used because of the following reasons:
 - Most popular PDF tool for Java and C#, which means wide community support.
@@ -42,7 +49,21 @@ For example, if you send the following in the request's body:
 ```
 
 A PDF File will be downloaded and you can check that the `ReferralOrganizationName` field is now filled.
+
+<details>
+<summary>Click here to see the resulting PDF</summary>
+
+![image](Images/PDFResult_OrganizationName.png)
+
+</details>
+
 A list of all field names can be checked at the Swagger documentation.
+
+<details>
+
+![image](Images/Swagger2.png)
+
+</details>
 
 Below a table with the API's methods:
 
