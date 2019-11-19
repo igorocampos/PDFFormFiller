@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+
+    # Application container
+    dotnet:
+        image: microsoft/dotnet
+        build:
+          context: .
+          dockerfile: Dockerfile
+        environment:
+          PORT: 8080
+        volumes:
+          - ./:/server/http
+        links:
+          - postgres
+        ports:
+          - "8080:80"
+
+    postgres:
+        image: onjin/alpine-postgres
+        restart: unless-stopped
+        ports:
+            - "5432:5432"
+        environment:
+            LC_ALL: C.UTF-8
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: pdf_fields
