@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -67,7 +67,7 @@ namespace PDFFormFiller.Controllers
 
             //You need to reset the stream start position before sending it
             stream.Position = 0;
-            return File(stream, "application/pdf");
+            return File(stream, "application/pdf", "ESDC-EMP5624.pdf");
         }
 
     }
